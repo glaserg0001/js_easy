@@ -19,12 +19,12 @@
 
     <script>
 
-        let TextCounter = {
-            maxChar: 10,
-            textArea: null,
-            textAreaTotal: null,
-            textAreaLeft: null,
-            init: function () {
+        let TextCounter = function () {
+            this.maxChar = 10,
+            this.textArea = null,
+            this.textAreaTotal = null,
+            this.textAreaLeft = null,
+            this.init = () => {
                 this.textArea = document.querySelector('#js-message');
                 this.textAreaTotal = document.querySelector('#js-message-left-total');
                 this.textAreaLeft = document.querySelector('#js-message-left-symbols');
@@ -32,7 +32,7 @@
                 this.events();
             },
             
-            events: function () {
+            this.events = () => {
                 this.putCounter();
                 this.textArea.addEventListener('keyup', this.putCounter.bind(this));
                 // this.textArea.addEventListener('keydown', this.validateCount.bind(this));
@@ -40,13 +40,7 @@
                 this.textArea.addEventListener('keypress', this.validateCount.bind(this));
             },
 
-            testFunc: function (e) {
-                let a = e.charCode;
-                console.log(a);
-                // console.log('click')
-            },
-
-            listener: function () {
+            this.listener = () => {
                 let countChar = this.textArea.value.length;
                 let countCharLeft = this.maxChar - countChar;
                 return {
@@ -55,14 +49,14 @@
                 };
             },
 
-            putCounter: function () {
+            this.putCounter = () => {
                 let total = this.listener();
 
                 this.textAreaTotal.innerHTML = total.countChar;
                 this.textAreaLeft.innerHTML = total.countCharLeft;
             },
 
-            validateCount: function (event) {
+            this.validateCount = (event) => {
                 let k = event.keyCode;
                 let total = this.listener();
 
@@ -77,7 +71,8 @@
             }
         };
 
-        TextCounter.init();
+        let counter = new TextCounter();
+        counter.init();
 
         // charCode
         // es6 + lessons
