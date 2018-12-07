@@ -35,9 +35,9 @@
             this.events = () => {
                 this.putCounter();
                 this.textArea.addEventListener('keyup', this.putCounter.bind(this));
-                // this.textArea.addEventListener('keydown', this.validateCount.bind(this));
+                this.textArea.addEventListener('keydown', this.validateCount.bind(this));
 
-                this.textArea.addEventListener('keypress', this.validateCount.bind(this));
+                // this.textArea.addEventListener('keypress', this.validateCount.bind(this));
             },
 
             this.listener = () => {
@@ -56,15 +56,19 @@
                 this.textAreaLeft.innerHTML = total.countCharLeft;
             },
 
-            this.validateCount = (event) => {
-                let k = event.keyCode;
+            this.validateCount = (e) => {
+                let k = e.keyCode;
                 let total = this.listener();
 
-                let chCode = event.charCode;
+                let chCode = e.charCode;
                 // console.log(chCode);
 
-                if (total.countCharLeft <= 0  && chCode ) {
-                    // if (k == 8 || (k >= 35 && k <= 40) || k == 45 || k == 46) return;
+                // if (total.countChar > this.maxChar - 1 && chCode != 0) {
+                //     e.preventDefault();
+                // }
+
+                if (total.countCharLeft <= 0 /* && chCode*/ ) {
+                    if (k == 8 || (k >= 35 && k <= 40) || k == 45 || k == 46) return;
                     // this.textArea.value = this.textArea.value.substring(0, this.maxChar - 1);
                     event.preventDefault();
                 }
@@ -80,8 +84,8 @@
     </script>
 
     <script>
-
-        
+        var [a, b] = ['first', 'second', 3, 4, 5, 6];
+        console.log(a, b);
 
     </script>
 

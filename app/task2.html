@@ -1,66 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<link rel="stylesheet" href="css/main.css">
-	<script src="js/main.js"></script>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js"></script>
 </head>
 <body>
-	<style>
-	.gallery img {
-		height: 150px;
-		display: inline-block;
-		margin: 2px;
-		vertical-align: top;
-	}
-	.loader {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	.loader.loaded {
-		opacity: 0;
-		transition: all .3s linear;
-	}
-	.loader {
-		position: fixed;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		background: rgba(255,255,255,.9);
-	}
-	.loader-hide {
-		visibility: hidden;
-		opacity: 0;
-		transform: scale(1.1);
-		transition: all .3s ease-in-out;
-	}
-	.loader-progress {
-		width: 80%;
-		height: 50px;
-		margin: auto;
-		background: #f1f1f1;
-		position: relative;
-	}
+    <style>
+    .gallery img {
+        height: 150px;
+        display: inline-block;
+        margin: 2px;
+        vertical-align: top;
+    }
+    .loader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .loader.loaded {
+        opacity: 0;
+        transition: all .3s linear;
+    }
+    .loader {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(255,255,255,.9);
+    }
+    .loader-hide {
+        visibility: hidden;
+        opacity: 0;
+        transform: scale(1.1);
+        transition: all .3s ease-in-out;
+    }
+    .loader-progress {
+        width: 80%;
+        height: 50px;
+        margin: auto;
+        background: #f1f1f1;
+        position: relative;
+    }
 
-	.loader-progress-bar {
-		height: 100%;
-		width: 0;
-		background: #C7EFB3;
-		transition: all .3s linear;
-	}
+    .loader-progress-bar {
+        height: 100%;
+        width: 0;
+        background: #C7EFB3;
+        transition: all .3s linear;
+    }
 
-	.loader-percent {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		text-align: center;
-		font: 20px/50px sans-serif;
-	}
+    .loader-percent {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        font: 20px/50px sans-serif;
+    }
 </style>
 
 
@@ -81,61 +81,80 @@
 </div>
 
 <div id="loader" class="loader">
-	<div class="loader-progress">
-		<div id="loaderProgressBar" class="loader-progress-bar"></div>
-		<span id="loaderPercent" class="loader-percent">0%</span>
-	</div>
+    <div class="loader-progress">
+        <div id="loaderProgressBar" class="loader-progress-bar"></div>
+        <span id="loaderPercent" class="loader-percent">0%</span>
+    </div>
 </div>
 
 
 
 <script>
 
-	var Loader = (function() {
-		'use strict';
-		return {
-			init: function() {
-				this.loader = document.getElementById('loader');
-				this.preogressBar = document.getElementById('loaderProgressBar');
-				this.loaderPercent = document.getElementById('loaderPercent');
-				this.images = document.getElementsByTagName('img');
-				this.loaderHide = " loader-hide";
-				
-				this.events();
-			},
-			
-			events: function() {
-				this.loadImage(this.loadedCallback.bind(this));
-			},
-			
-			loadImage: function(callback) {
-				var self = this;
-				var numb = self.images.length;
-				var counter = 0;
+    var Loader = (function() {
+        'use strict';
+        return {
+            init: function() {
+                this.loader = document.getElementById('loader');
+                this.preogressBar = document.getElementById('loaderProgressBar');
+                this.loaderPercent = document.getElementById('loaderPercent');
+                this.images = document.getElementsByTagName('img');
+                this.loaderHide = " loader-hide";
+                
+                this.events();
+            },
+            
+            events: function() {
+                this.loadImage(this.loadedCallback.bind(this));
+            },
+            
+            loadImage: function(callback) {
+                var self = this;
+                var numb = self.images.length;
 
-				for(var i = 0; i < numb; i++) {
 
-					self.images[i].onload = self.images[i].onerror = function () {
-						counter++;
-						if (counter == self.images.length) callback();
-						self.increaseProgressBar(numb, counter);
-					}
-				}
-			},
-			
-			increaseProgressBar: function(numb, count) {
-				var percent = count/numb*100
-				this.preogressBar.style.width = percent + '%';
-				this.loaderPercent.innerHTML = percent.toFixed(0) + '%';
-			},
-			
-			loadedCallback: function() {
-				this.loader.className += this.loaderHide;
-			}
-		};
-	})();
-	
-	Loader.init();
+
+                let vvv = self.images;
+                console.log(vvv);
+                // let print = (x) => x;
+                // var tt = vvv.map(function(x) {
+                //     return x;
+                // });
+
+                console.log();
+                var numbers = [1, 5, 10, 15];
+                var roots = numbers.map(function(x) {
+                   return x * 2;
+               });
+                console.log(roots);
+
+
+
+                var counter = 0;
+                // map forEach
+                for(var i = 0; i < numb; i++) {
+
+                    self.images[i].onload = self.images[i].onerror = function () {
+                        counter++;
+                        if (counter == self.images.length) callback();
+                        self.increaseProgressBar(numb, counter);
+                    };
+                };
+            },
+            
+            increaseProgressBar: function(numb, count) {
+                var percent = count / numb * 100;
+                this.preogressBar.style.width = percent + '%';
+                this.loaderPercent.innerHTML = percent.toFixed(0) + '%';
+            },
+            
+            loadedCallback: function() {
+                this.loader.className += this.loaderHide;
+            }
+        };
+    })();
+    
+    Loader.init();
 
 </script>
 
