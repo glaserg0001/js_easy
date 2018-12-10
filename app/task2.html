@@ -64,7 +64,7 @@
 </style>
 
 
- <div class="gallery">
+<div class="gallery">
    <img src="https://farm2.staticflickr.com/1580/25180703901_8d151b1260_b.jpg" alt="Image 1"/>
    <img src="https://farm2.staticflickr.com/1569/25155568712_d2b27e77ef_b.jpg" alt="Image 2"/>
    <img src="https://farm2.staticflickr.com/1627/25247562596_a50669cfcf_b.jpg" alt="Image 3"/>
@@ -109,41 +109,36 @@
             },
             
             loadImage: function(callback) {
-                var self = this;
-                var numb = self.images.length;
+                let self = this;
+                let numbImages = self.images.length;
 
 
 
-                let vvv = self.images;
-                console.log(vvv);
-                // let print = (x) => x;
-                // var tt = vvv.map(function(x) {
-                //     return x;
-                // });
+                let arrImages = self.images;
 
-                console.log();
-                var numbers = [1, 5, 10, 15];
-                var roots = numbers.map(function(x) {
-                   return x * 2;
-               });
-                console.log(roots);
+                let counter = 0;
 
-
-
-                var counter = 0;
-                // map forEach
-                for(var i = 0; i < numb; i++) {
-
-                    self.images[i].onload = self.images[i].onerror = function () {
+                // [...arrImages]
+                [].slice.call(arrImages).forEach(item => {
+                    item.onload = item.onerror = function () {
                         counter++;
-                        if (counter == self.images.length) callback();
-                        self.increaseProgressBar(numb, counter);
+                        if (counter == numbImages) callback();
+                        self.increaseProgressBar(numbImages, counter);
                     };
-                };
+                });
+
+                // for(var i = 0; i < numb; i++) {
+
+                //     self.images[i].onload = self.images[i].onerror = function () {
+                //         counter++;
+                //         if (counter == self.images.length) callback();
+                //         self.increaseProgressBar(numb, counter);
+                //     };
+                // };
             },
             
             increaseProgressBar: function(numb, count) {
-                var percent = count / numb * 100;
+                let percent = count / numb * 100;
                 this.preogressBar.style.width = percent + '%';
                 this.loaderPercent.innerHTML = percent.toFixed(0) + '%';
             },

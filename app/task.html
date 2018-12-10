@@ -20,7 +20,7 @@
     <script>
 
         let TextCounter = function () {
-            this.maxChar = 10,
+            this.maxChar = 140,
             this.textArea = null,
             this.textAreaTotal = null,
             this.textAreaLeft = null,
@@ -36,8 +36,6 @@
                 this.putCounter();
                 this.textArea.addEventListener('keyup', this.putCounter.bind(this));
                 this.textArea.addEventListener('keydown', this.validateCount.bind(this));
-
-                // this.textArea.addEventListener('keypress', this.validateCount.bind(this));
             },
 
             this.listener = () => {
@@ -60,14 +58,7 @@
                 let k = e.keyCode;
                 let total = this.listener();
 
-                let chCode = e.charCode;
-                // console.log(chCode);
-
-                // if (total.countChar > this.maxChar - 1 && chCode != 0) {
-                //     e.preventDefault();
-                // }
-
-                if (total.countCharLeft <= 0 /* && chCode*/ ) {
+                if (total.countCharLeft <= 0 ) {
                     if (k == 8 || (k >= 35 && k <= 40) || k == 45 || k == 46) return;
                     // this.textArea.value = this.textArea.value.substring(0, this.maxChar - 1);
                     event.preventDefault();
@@ -78,27 +69,9 @@
         let counter = new TextCounter();
         counter.init();
 
-        // charCode
-        // es6 + lessons
-
     </script>
 
     <script>
-
-        // for es6 start
-            const [a, b, ... arr] = [1, 2, 3, 4, 5, 7]; 
-            console.log (a, b); // 1, 2 
-            console.log (arr); // [3, 4, 5, 7]
-
-
-            const profileUpdate = (profileData) => {
-                const { name, age, nationality, location } = profileData;
-                // do something with these variables
-            }
-        // for es6 end
-
-        var [a, b] = ['first', 'second', 3, 4, 5, 6];
-        console.log(a, b);
 
     </script>
 
