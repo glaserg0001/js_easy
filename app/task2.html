@@ -112,14 +112,13 @@
                 let self = this;
                 let numbImages = self.images.length;
 
-
-
-                let arrImages = self.images;
+                let listImages = self.images;
 
                 let counter = 0;
 
                 // [...arrImages]
-                [].slice.call(arrImages).forEach(item => {
+                let arrImages = [].slice.call(listImages);
+                arrImages.forEach(item => {
                     item.onload = item.onerror = function () {
                         counter++;
                         if (counter == numbImages) callback();
