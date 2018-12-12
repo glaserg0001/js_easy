@@ -1,8 +1,11 @@
 var gulp					= require('gulp'),
+		src						= require('gulp'),
 		sass					= require('gulp-sass'),
 		browserSync		= require('browser-sync'),
 		del						= require('del'),
-		sourcemaps		= require('gulp-sourcemaps');
+		sourcemaps		= require('gulp-sourcemaps'),
+		eslint 				= require('gulp-eslint');
+
 
 
 var app = './app';
@@ -16,6 +19,25 @@ var sassFun = function(){
 	.pipe(browserSync.reload({stream: true}))
 }
 
+gulp.task('aa', function () {
+    return gulp.src([app + '/js/**/*.js'])
+        // eslint() attaches the lint output to the "eslint" property
+        // of the file object so it can be used by other modules.
+        .pipe(eslint({
+        	rules: {
+        		"indent": [2,2],
+        		"camelcase": 1,
+        		"comma-dangle": 2,
+        		"quotes": 0
+        	}
+        }))
+        // eslint.format() outputs the lint results to the console.
+        // Alternatively use eslint.formatEach() (see Docs).
+        .pipe(eslint.format())
+        // To have the process exit with an error code (1) on
+        // lint error, return the stream and pipe to failAfterError last.
+        .pipe(eslint.failAfterError());
+});
 
 gulp.task('sass', sassFun);
 
@@ -28,8 +50,6 @@ gulp.task('browser-sync', function() {
 		// ghostMode: false,
 	});
 });
-
-
 
 gulp.task('watch', ['browser-sync'], function() {
 	gulp.watch(app + '/sass/*.sass', ['sass']);
@@ -63,4 +83,4 @@ gulp.task('build', ['clean', 'sass'], function() {
 
 });
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['watch', 'aa']);
