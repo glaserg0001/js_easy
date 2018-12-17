@@ -19,23 +19,10 @@ var sassFun = function(){
 	.pipe(browserSync.reload({stream: true}))
 }
 
-gulp.task('aa', function () {
+gulp.task('eslint', function () {
     return gulp.src([app + '/js/**/*.js'])
-        // eslint() attaches the lint output to the "eslint" property
-        // of the file object so it can be used by other modules.
-        .pipe(eslint({
-        	rules: {
-        		"indent": [2,2],
-        		"camelcase": 1,
-        		"comma-dangle": 2,
-        		"quotes": 0
-        	}
-        }))
-        // eslint.format() outputs the lint results to the console.
-        // Alternatively use eslint.formatEach() (see Docs).
+        .pipe(eslint())
         .pipe(eslint.format())
-        // To have the process exit with an error code (1) on
-        // lint error, return the stream and pipe to failAfterError last.
         .pipe(eslint.failAfterError());
 });
 
@@ -83,4 +70,4 @@ gulp.task('build', ['clean', 'sass'], function() {
 
 });
 
-gulp.task('default', ['watch', 'aa']);
+gulp.task('default', ['watch']);

@@ -1,2 +1,3 @@
-console.log('ss')
-console.log('ss')
+function functionName(argument) {
+console.log('11')
+}
