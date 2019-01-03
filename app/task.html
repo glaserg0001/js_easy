@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="css/main.css">
-    <script src="js/main.js"></script>
+    
 </head>
 <body>
     <ul>
@@ -17,63 +17,11 @@
         <p>Symbols total: <b id="js-message-left-total">0</b>, left: <b id="js-message-left-symbols">0</b></p>
     </div>
 
+    <script src="js/main.js"></script>
+
     <script>
-
-        let TextCounter = function () {
-            this.maxChar = 140,
-            this.textArea = null,
-            this.textAreaTotal = null,
-            this.textAreaLeft = null,
-            this.init = () => {
-                this.textArea = document.querySelector('#js-message');
-                this.textAreaTotal = document.querySelector('#js-message-left-total');
-                this.textAreaLeft = document.querySelector('#js-message-left-symbols');
-                
-                this.events();
-            },
-            
-            this.events = () => {
-                this.putCounter();
-                this.textArea.addEventListener('keyup', this.putCounter.bind(this));
-                this.textArea.addEventListener('keydown', this.validateCount.bind(this));
-            },
-
-            this.listener = () => {
-                let countChar = this.textArea.value.length;
-                let countCharLeft = this.maxChar - countChar;
-                return {
-                    countChar: countChar,
-                    countCharLeft: countCharLeft
-                };
-            },
-
-            this.putCounter = () => {
-                let total = this.listener();
-
-                this.textAreaTotal.innerHTML = total.countChar;
-                this.textAreaLeft.innerHTML = total.countCharLeft;
-            },
-
-            this.validateCount = (e) => {
-                let k = e.keyCode;
-                let total = this.listener();
-
-                if (total.countCharLeft <= 0 ) {
-                    if (k == 8 || (k >= 35 && k <= 40) || k == 45 || k == 46) return;
-                    // this.textArea.value = this.textArea.value.substring(0, this.maxChar - 1);
-                    event.preventDefault();
-                }
-            }
-        };
-
-        let counter = new TextCounter();
         counter.init();
-
     </script>
-
-    <script>
-
-    </script>
-
+    
 </body>
 </html>
