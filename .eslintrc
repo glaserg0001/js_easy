@@ -1,4 +1,8 @@
 {
+    "env": {
+        "browser": true,
+        "es6": true
+    },
     "rules": {
         "indent": ["error", 4],
         "no-console": "error",
@@ -57,7 +61,7 @@
         "no-redeclare": 0,
         "no-script-url": 2,
         "no-self-compare": 2,
-        "no-sequences": 2,
+        "no-sequences": 0,
         "no-shadow": 0,
         "no-shadow-restricted-names": 2,
         "no-sync": 2,
@@ -97,7 +101,6 @@
         "no-unused-vars": 2
     },
     "parserOptions": {
-        "sourceType": "module",
         "ecmaVersion": 8
     }
 }
