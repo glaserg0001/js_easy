@@ -8,10 +8,10 @@ let TextCounter = function () {
         this.textArea = document.querySelector('#js-message');
         this.textAreaTotal = document.querySelector('#js-message-left-total');
         this.textAreaLeft = document.querySelector('#js-message-left-symbols');
-        
+
         this.events();
     },
-    
+
     this.events = () => {
         this.putCounter();
         this.textArea.addEventListener('keyup', this.putCounter.bind(this));
@@ -39,15 +39,17 @@ let TextCounter = function () {
         let total = this.listener();
 
         if (total.countCharLeft <= 0 ) {
-            if (k == 8 || (k >= 35 && k <= 40) || k == 45 || k == 46) return;
+            if (k == 8 || (k >= 35 && k <= 40) || k == 45 || k == 46) {
+                return;
+            };
             // this.textArea.value = this.textArea.value.substring(0, this.maxChar - 1);
             event.preventDefault();
         }
-    }
+    };
 };
 
-let counter = new TextCounter();
-// counter.init();
+let textCounter = new TextCounter();
+textCounter.init();
 
 // TASK 2
 
@@ -60,14 +62,14 @@ var Loader = (function() {
             this.loaderPercent = document.getElementById('loaderPercent');
             this.images = document.getElementsByTagName('img');
             this.loaderHide = " loader-hide";
-            
+
             this.events();
         },
-        
+
         events: function() {
             this.loadImage(this.loadedCallback.bind(this));
         },
-        
+
         loadImage: function(callback) {
             let self = this;
             let numbImages = self.images.length;
@@ -81,7 +83,9 @@ var Loader = (function() {
             arrImages.forEach(item => {
                 item.onload = item.onerror = function () {
                     counter++;
-                    if (counter == numbImages) callback();
+                    if (counter == numbImages) {
+                        callback();
+                    }
                     self.increaseProgressBar(numbImages, counter);
                 };
             });
@@ -95,17 +99,17 @@ var Loader = (function() {
             //     };
             // };
         },
-        
+
         increaseProgressBar: function(numb, count) {
             let percent = count / numb * 100;
             this.preogressBar.style.width = percent + '%';
             this.loaderPercent.innerHTML = percent.toFixed(0) + '%';
         },
-        
+
         loadedCallback: function() {
             this.loader.className += this.loaderHide;
         }
     };
 })();
 
-// Loader.init();
+Loader.init();
